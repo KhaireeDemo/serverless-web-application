@@ -11,6 +11,17 @@ c- Installation
 d- Code hierarchy
 e- Steps to Build, deploy, and test
 
+
+-------------------------
+      Assumptions
+-------------------------
+
+- In the beginning I wrote my api using spring, but I found that the spring configuration with lambda will take a long time. so i preferred to use Nodejs.
+- Also i decided to use API gateway instead Application Load Balancer to invoke my lambda function as it simply integrates with the lambda function.
+- In using terraform, I used the terraform module as it is better to be used to classify my terraform code.
+- And i didn't use terraform variables, but i used it to make my code clear. And I used too terraform outputs to log my final API URL.
+- I used github action as ci tool to carry my and run my terraform configuration instead of other ci tools like jenkins to better and faster installation to all my project
+
 -------------------------
           Plan
 -------------------------
@@ -62,11 +73,11 @@ So now my environment is ready to write my terraform files, and github actions y
 ###Workflow actions#### 
 
 a- Pull Request Workflow:
-**** Checkout --> Setup Terraform --> Terraform format --> Terraform init --> Terraform plan --> Update Pull Request --> Terraform Plan Status.
+**** Checkout --> Setup Terraform --> Terraform init --> Terraform plan --> Update Pull Request --> Terraform Plan Status.
 
 b- Merge to Master Workflow:
 
-**** Checkout --> Setup Terraform --> Terraform format --> Terraform init --> Terraform apply.
+**** Checkout --> Setup Terraform --> Terraform init --> Terraform apply.
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -------------------------
         Code hierarchy
@@ -89,7 +100,7 @@ Steps to Build, deploy, and test
 
 To do the full pracaties of build, deploy, and test in a new aws account, and terraform cloud account. Just do the below steps
 
-1- Clone my github repo to a new repo on your github account with a new branch "stage" for example.
+1- Fork my github repo to a new repo on your github account with a new branch "stage" for example.
 2- Create AWS Access Key ID and Secret Access Key using your account, then configure it in your terraform cloud. ** Follow the steps on the installation section section **
 3- In your github repo settings, create a new secret using your a terraform Cloud API token with the exact name which i usedC it in the terraform.yml file 'TF_API_TOKEN'.
 ###NOTE: You can use an existing configured connection by replacing your existing github secret name with the one saved in the terraform.yml in the 'cli_config_credentials_token' variable.
