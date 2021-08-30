@@ -15,6 +15,7 @@ module.exports.handler = async (event) => {
       body: JSON.parse(event.body),
       headers: event.headers,
       method: event.httpMethod
+      
     }),
   }
 }
